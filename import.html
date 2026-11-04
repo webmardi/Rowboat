@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rowboat – Import cards from CSV</title>
+  <link rel="stylesheet" href="./import.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="./config.js"></script>
+</head>
+<body>
+<main id="app">
+
+  <!-- Connect -->
+  <section id="screen-auth" class="screen" hidden>
+    <h1>Connect to Trello</h1>
+    <p class="lead">The importer needs permission to read this board and create cards on it. You only do this once.</p>
+    <button id="btn-auth" class="btn primary">Connect to Trello</button>
+    <p id="auth-error" class="msg error" hidden></p>
+  </section>
+
+  <!-- Upload -->
+  <section id="screen-upload" class="screen" hidden>
+    <h1>Import cards from a CSV</h1>
+    <p class="lead">Each row becomes a card on <strong id="board-name">this board</strong>. You’ll choose where every column goes before anything is created.</p>
+    <label id="drop" class="drop" tabindex="0">
+      <input id="file" type="file" accept=".csv,.tsv,text/csv" hidden>
+      <span class="drop-title">Drop a CSV file here</span>
+      <span class="drop-sub">or click to choose one</span>
+    </label>
+    <p id="upload-error" class="msg error" hidden></p>
+  </section>
+
+  <!-- Map -->
+  <section id="screen-map" class="screen" hidden>
+    <header class="map-head">
+      <div>
+        <h1 id="file-name">file.csv</h1>
+        <p class="lead" id="file-summary"></p>
+      </div>
+      <button id="btn-change-file" class="btn ghost">Choose another file</button>
+    </header>
+
+    <div class="map-table" role="table" aria-label="Column mapping">
+      <div class="map-row map-row--head" role="row">
+        <span role="columnheader">Spreadsheet column</span>
+        <span role="columnheader">Sample values</span>
+        <span role="columnheader">Trello field</span>
+      </div>
+      <div id="map-rows"></div>
+    </div>
+
+    <details id="options" class="options" open>
+      <summary>Import options</summary>
+      <div class="options-grid">
+        <label class="opt" data-show="list-fallback">
+          <span>Default list</span>
+          <select id="opt-fallback-list"></select>
+          <small>Used when a row has no list, or no column is mapped to List.</small>
+        </label>
+        <label class="opt" data-show="date">
+          <span>Date format</span>
+          <select id="opt-date-format">
+            <option value="auto">Detect automatically (day first if unclear)</option>
+            <option value="DMY">Day / month / year</option>
+            <option value="MDY">Month / day / year</option>
+            <option value="YMD">Year / month / day</option>
+          </select>
+        </label>
+        <label class="opt" data-show="date">
+          <span>Time when none is given</span>
+          <input id="opt-default-time" type="time" value="09:00">
+        </label>
+        <label class="opt" data-show="multi">
+          <span>Separator for several values</span>
+          <input id="opt-separator" type="text" value="," maxlength="3">
+          <small>For Labels and Members, e.g. <code>holyraza, webmardi</code></small>
+        </label>
+        <label class="opt" data-show="position">
+          <span>Add cards to</span>
+          <select id="opt-position">
+            <option value="bottom">Bottom of the list</option>
+            <option value="top">Top of the list</option>
+          </select>
+        </label>
+        <label class="check" data-show="list">
+          <input id="opt-create-lists" type="checkbox" checked>
+          <span>Create lists that don’t exist yet</span>
+        </label>
+        <label class="check" data-show="labels">
+          <input id="opt-create-labels" type="checkbox" checked>
+          <span>Create labels that don’t exist yet</span>
+        </label>
+        <label class="check" data-show="group">
+          <input id="opt-group" type="checkbox">
+          <span>Merge rows with the same card name and list into one card</span>
+          <small>Turn this on to build checklists: one row per checklist item.</small>
+        </label>
+      </div>
+    </details>
+
+    <section id="check" class="check-panel" aria-live="polite"></section>
+
+    <footer class="actions">
+      <span id="action-hint" class="hint"></span>
+      <button id="btn-import" class="btn primary" disabled>Import</button>
+    </footer>
+  </section>
+
+  <!-- Run -->
+  <section id="screen-run" class="screen" hidden>
+    <h1 id="run-title">Importing…</h1>
+    <div class="progress"><div id="progress-bar"></div></div>
+    <p id="run-status" class="lead"></p>
+    <ol id="run-log" class="log"></ol>
+    <footer class="actions" id="run-actions" hidden>
+      <button id="btn-again" class="btn ghost">Import another file</button>
+      <button id="btn-close" class="btn primary">Close</button>
+    </footer>
+  </section>
+
+</main>
+<script src="./import.js"></script>
+</body>
+</html>
