@@ -263,7 +263,7 @@ function optionHtml(f, header) {
 function renderMapping() {
   const { name, headers, rows } = state.file;
   $('file-name').textContent = name;
-  $('file-summary').textContent = `${rows.length} row${rows.length === 1 ? '' : 's'}, ${headers.length} columns. Pick a Trello field for each column, or leave it as No Field to skip it.`;
+  $('file-summary').innerHTML = `${rows.length} row${rows.length === 1 ? '' : 's'}, ${headers.length} column${headers.length === 1 ? '' : 's'}.<br>Pick a Trello field for each column, or leave it as No Field to skip it.`;
 
   const cfs = state.board.customFields;
   $('map-rows').innerHTML = headers.map((h, i) => {
@@ -274,9 +274,6 @@ function renderMapping() {
     return `
       <div class="map-row" role="row">
         <span class="col-name" role="cell">${esc(h)}<span class="badge" id="badge-${i}" hidden></span></span>
-        <span class="samples" role="cell">${samples.length
-          ? samples.map((s) => `<span class="sample" title="${esc(s)}">${esc(s)}</span>`).join('')
-          : '<span class="sample empty">empty</span>'}</span>
         <span role="cell">
           <select data-header="${esc(h)}" aria-label="Trello field for ${esc(h)}" class="${state.mapping[h] ? 'mapped' : ''}">
             <option value=""${state.mapping[h] ? '' : ' selected'}>No Field</option>
@@ -285,6 +282,9 @@ function renderMapping() {
             <optgroup label="Checklist Fields">${CHECKLIST_FIELDS.map((f) => optionHtml(f, h)).join('')}</optgroup>
           </select>
         </span>
+        <span class="samples" role="cell">${samples.length
+          ? samples.map((s) => `<span class="sample" title="${esc(s)}">${esc(s)}</span>`).join('')
+          : '<span class="sample empty">empty</span>'}</span>
       </div>`;
   }).join('');
 

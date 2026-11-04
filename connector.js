@@ -1,10 +1,11 @@
 /* global TrelloPowerUp, CONFIG */
-const ICON = new URL('./icon.svg', window.location.href).href;
+const ICON_BLACK = new URL('./icon.svg', window.location.href).href;
+const ICON_WHITE = new URL('./icon-white.svg', window.location.href).href;
 
 TrelloPowerUp.initialize({
   'board-buttons': function () {
     return [{
-      icon: { dark: ICON, light: ICON },
+      icon: { dark: ICON_WHITE, light: ICON_BLACK },
       text: 'Rowboat',
       callback: function (t) {
         return t.modal({

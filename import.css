@@ -41,7 +41,7 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--surface); color: var(--ink); }
 body { font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif; }
-#app { padding: 20px 24px 0; max-width: 980px; margin: 0 auto; }
+#app { padding: 20px 24px 32px; max-width: 980px; margin: 0 auto; }
 .screen[hidden] { display: none; }
 h1 { font-size: 20px; line-height: 1.25; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.01em; }
 .lead { color: var(--ink-soft); margin: 0 0 16px; max-width: 70ch; }
@@ -67,7 +67,7 @@ code { font-size: 12px; background: var(--sunken); padding: 1px 4px; border-radi
 .map-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .map-head h1 { overflow-wrap: anywhere; }
 .map-table { border-top: 1px solid var(--line); }
-.map-row { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(140px, 1.3fr) minmax(220px, 1.3fr); gap: 16px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.map-row { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(220px, 1.3fr) minmax(140px, 1.3fr); gap: 16px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .map-row--head { font-size: 12px; font-weight: 600; color: var(--ink-faint); padding: 8px 0; }
 .col-name { font-weight: 600; overflow-wrap: anywhere; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
 .samples { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
@@ -124,7 +124,7 @@ select.mapped { border-color: var(--accent); }
 .log li.warn { color: var(--warn); }
 
 @media (max-width: 640px) {
-  #app { padding: 16px 14px 0; }
+  #app { padding: 16px 14px 24px; }
   .map-row { grid-template-columns: 1fr; gap: 6px; }
   .map-row--head { display: none; }
   .map-head { flex-direction: column; }

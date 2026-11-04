@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#626F86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+<svg width="84" height="69" viewBox="0 0 84 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Upload arrow from the reference logo, enlarged, sitting in the boat like a rower -->
+  <g transform="translate(42 50) scale(1.3) translate(-42 -69)">
+    <path d="M36.9788 69H47.8905C48.4272 69 48.8682 68.5763 48.8897 68.0399L49.6296 49.5128C49.6511 48.9765 50.0921 48.5527 50.6288 48.5527H56.4182C57.2998 48.5527 57.7501 47.4947 57.1388 46.8594L43.1553 32.3253C42.7619 31.9164 42.1074 31.9164 41.714 32.3253L27.7305 46.8594C27.1192 47.4947 27.5695 48.5527 28.4511 48.5527H34.2405C34.7772 48.5527 35.2182 48.9765 35.2397 49.5128L35.9796 68.0399C36.0011 68.5763 36.4421 69 36.9788 69Z" fill="black"/>
+  </g>
+  <!-- Thin single-seat hull with raised bow and stern -->
+  <path d="M1 47C13 53.5 27 55 42 55C57 55 71 53.5 83 47C80.5 53 75 58 68 60.5C60 63.5 51 64.5 42 64.5C33 64.5 24 63.5 16 60.5C9 58 3.5 53 1 47Z" fill="black"/>
+</svg>
